@@ -33,6 +33,10 @@ def tile_count(
 
 def layout_preview(room_l: float, room_w: float, tile_l: float, tile_w: float) -> dict:
     """Grid count if tiles are laid on a full rectangular lattice (may exceed area method)."""
+    if float(tile_l) <= 0 or float(tile_w) <= 0:
+        raise ValueError(
+            f"非正砖边被拒绝: tile_l={tile_l}, tile_w={tile_w}（砖边须为正数）"
+        )
     cols = ceil_units(float(room_l) / float(tile_l))
     rows = ceil_units(float(room_w) / float(tile_w))
     grid_count = cols * rows
